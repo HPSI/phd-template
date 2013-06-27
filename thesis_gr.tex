@@ -1,0 +1,103 @@
+\documentclass[greek]{cslabthesis}
+
+% Some useful packages
+\usepackage[greek]{bkkalgo}
+\usepackage{xspace}
+\usepackage{addlines}
+\usepackage{paralist}
+\usepackage{listings}
+%\usepackage[squaren,binary,thinspace,thinqspace,textstyle]{SIunits}
+
+% Some useful commands
+\newcommand\MathVar[1]{\ensuremath{\mathit{#1}}}
+\newcommand\MathVec[1]{\ensuremath{\mathbf{#1}}}
+\newcommand\Benchmark[1]{\textsf{#1}}
+\DeclareMathOperator\modulo{mod}
+\newcommand\AlgFunction[1]{\textsc{#1}}
+
+% Flop unit
+\addunit{\flop}{flop}
+\newcommand\mflops{\mega\flop\per\second}
+\newcommand\gflops{\giga\flop\per\second}
+
+% Some column types
+\newcolumntype{Y}[1]{>{\setlength\hsize{#1\hsize}\arraybackslash}X}
+\newcolumntype{Z}[1]{>{\setlength\hsize{#1\hsize}\centering\arraybackslash}X}
+\newcolumntype{V}[1]{>{\setlength\hsize{#1\hsize}\raggedright\arraybackslash}X}
+\newcolumntype{W}[1]{>{\setlength\hsize{#1\hsize}\raggedleft\arraybackslash}X}
+\newcolumntype{S}[1]{>{\setlength\hsize{#1\hsize}\centering\small\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft}m{#1}}
+\newcommand\tabcell[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\author{Βασίλειος Κ.\ Καρακάσης}
+\title{Ο Τίτλος}
+\date{Αθήνα, \\ Δεκέμβριος 2012}
+\examsdate{17η}{Δεκεμβρίου}{2012}
+
+% Committee (order matters)
+\committeememb{Νεκτάριος Κοζύρης}{Αναπ.\ Καθηγητής Ε.Μ.Π.}
+\committeememb{Παναγιώτης Τσανάκας}{Καθηγητής Ε.Μ.Π.}
+\committeememb{Ανδρέας Σταφυλοπάτης}{Καθηγητής Ε.Μ.Π.}
+\committeememb{Ανδρέας Μπουντουβής}{Καθηγητής Ε.Μ.Π.}
+\committeememb{Γιώργος Στάμου}{Λέκτορας Ε.Μ.Π.}
+\committeememb{Δημήτριος Σούντρης}{Επίκ.\ Καθηγητής Ε.Μ.Π.}
+\committeememb{Ιωάννης Κοτρώνης}{Επίκ.\ Καθηγητής Ε.Κ.Π.Α.}
+
+% University, school and division
+\institution{Εθνικό Μετσόβιο Πολυτεχνείο}
+\school{Σχολή Ηλεκτρολόγων Μηχανικών και Μηχανικών Υπολογιστών}
+\division{Τομέας Τεχνολογίας Πληροφορικής και Υπολογιστών}
+
+\makeindex
+\indexintoc
+
+\begin{document}
+\maketitle
+
+%%
+%% Uncomment the following to check the type sizes for adjusting the scaling of
+%% the secondary fonts and the line width
+%%
+
+%% \newcommand\alphabet{abcdefghijklmnopqrstuvwxyz}
+%% \newcommand\baseletter{x}
+%% \newlength\lena
+%% \newlength\lenb
+%% \newlength\lenc
+%% \settowidth\lena{\alphabet}
+%% \typeout{Type size is \the\lena}
+%% \typeout{Line width is \the\linewidth}
+
+%% \settoheight\lena{\baseletter}
+%% \settoheight\lenb{\textsf{\baseletter}}
+%% \settoheight\lenc{\texttt{\baseletter}}
+%% \typeout{Normal font height is \the\lena}
+%% \typeout{Sans font height is \the\lenb}
+%% \typeout{Truetype font height is \the\lenc}
+
+\frontmatter
+\tableofcontents
+
+\cleardoublepage
+\listoffigures
+
+\cleardoublepage
+\listoftables
+
+\cleardoublepage
+\listofalgorithms
+
+\include{preface}
+
+\mainmatter
+\include{intro_gr}
+% More chapters to follow
+
+\backmatter
+\bibliography{thesis_gr}
+\cleardoublepage
+\printindex
+
+\end{document}

@@ -1,0 +1,47 @@
+\graphicspath{{./figs/intro/}}
+\chapter{Εισαγωγή}
+\label{chap-intro}
+
+Σύντομο εισαγωγικό σημείωμα.
+
+\section{Ξεκινώντας}
+Μπλα, μπλα, μπλα\dots
+
+Ο Αλγόριθμος~\ref{alg-sample}, βασίζεται στο custom πακέτο
+\IndexedSubtermEmph{bkkalgo}{custom \LaTeX packages}, στο 
+Σχήμα~\ref{fig-sample} και, φυσικά, στον Πίνακα~\ref{tab-sample}. Περισσότερα
+στο~\cite{karakasis12cslab}.
+
+\begin{algorithm}
+  \algtoprule
+  \begin{algorithmic}[1]
+    \Procedure{MatVecCsr}{$A$::in, $x$::in, $y$::out}
+        \Statex{$A$: matrix in CSR format}
+        \Statex{$x$: input vector}
+        \Statex{$y$: output vector}
+        \ForBounds{$i \gets 0$}{$\MathVar{N}$}
+            \ForBounds{$j \gets \MathVar{rowptr}[i]$}{$\MathVar{rowptr}[i+1]$}
+            \label{al-row-start}
+                \State{$y[i] \gets y[i] + \MathVar{values}[j]\cdot x[\MathVar{colind}[j]]$}
+            \EndFor\label{al-row-end}
+        \EndFor
+    \EndProcedure
+  \end{algorithmic}
+  \algbottomrule
+  \caption{Δείγμα αλγορίθμου.}
+  \label{alg-sample}
+\end{algorithm}
+
+\begin{figure}
+  \centering
+  \fbox{Put a graphic here.}
+  \caption{Δείγμα σχήματος.}
+  \label{fig-sample}
+\end{figure}
+
+\begin{table}
+  \centering
+  \fbox{Put some tabular data here.}
+  \caption{Δείγμα πίνακα.}
+  \label{tab-sample}
+\end{table}

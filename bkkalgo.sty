@@ -1,0 +1,65 @@
+%
+% A wrapper algorithm listings based on the algorithmicx package.
+%
+% An algorithm environment using the customizable caption package is also
+% defined. If you load this package after caption, all generic caption setup is
+% inherited by the algorithm captions.
+% 
+% Also some new keywords, styling and fixes.
+%
+% Copyright (C) 2012, Vasileios Karakasis
+%
+
+\makeatletter
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bkkalgo}
+
+\newcommand\alg@lang{}
+
+\DeclareOption{english}{\renewcommand\alg@lang{en}}
+\DeclareOption{greek}{\renewcommand\alg@lang{gr}}
+
+% Default options
+\ExecuteOptions{english}
+\ProcessOptions
+
+\RequirePackage{ifthen}
+\RequirePackage{caption}
+\RequirePackage[noend]{algpseudocode}
+\RequirePackage{xspace}
+
+\newcommand\algdefaultrule{\rule{\linewidth}{.5pt}}
+\newcommand\algtoprule{\algdefaultrule}
+\newcommand\algbottomrule{\algdefaultrule}
+
+% Caption setup
+\ifthenelse{\equal{\alg@lang}{gr}}{
+  \DeclareCaptionType[fileext=loa,placement=htbp,within=chapter]{algorithm}[Αλγόριθμος][Κατάλογος Αλγορίθμων]
+}{
+  \DeclareCaptionType[fileext=loa,placement=htbp,within=chapter]{algorithm}
+}
+
+% Algorithmic package setup
+\algnewcommand\algorithmiccontinue{\textbf{continue}}
+\algnewcommand\algorithmicbreak{\textbf{break}}
+\algnewcommand\algorithmicin{\textbf{in}\xspace}
+\algnewcommand\algorithmicpar{\textbf{parallel}\xspace}
+\algnewcommand\algorithmicto{\textbf{to}\xspace}
+\algnewcommand\algorithmicstep{\textbf{step by}\xspace}
+\algrenewcommand\algorithmiccomment[1]{\hfill\(\triangleright\) {\small\em #1}}
+
+% Set up new blocks
+\algblockdefx{ForEach}{EndFor}[2]{\textbf{foreach} #1 \algorithmicin #2 \algorithmicdo}{\textbf{end for}}
+
+\algblockdefx{ForBounds}{EndFor}[2]{\textbf{for} #1 \algorithmicto #2 \algorithmicdo}{\textbf{end for}}
+
+\algblockdefx{ForBoundsStep}{EndFor}[3]{\textbf{for} #1 \algorithmicto #2 \algorithmicstep #3 \algorithmicdo}{\textbf{end for}}
+
+% Parallel blocks
+\algblockdefx{ParForBounds}{EndFor}[2]{\textbf{for} #1 \algorithmicto #2 \algorithmicdo\ \algorithmicin \algorithmicpar}{\textbf{end for}}
+
+\newcommand\Continue{\State{\algorithmiccontinue}}
+\newcommand\Break{\State{\algorithmicbreak}}
+\newcommand\Continuex{\Statex{\algorithmiccontinue}}
+\newcommand\Breakx{\Statex{\algorithmicbreak}}
+\makeatother

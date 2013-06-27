@@ -1,0 +1,47 @@
+\graphicspath{{./figs/intro/}}
+\chapter{Introduction}
+\label{chap-intro}
+
+Some preamble text.
+
+\section{Starting over}
+Blah blah blah.
+
+Check out Algorithm~\ref{alg-sample}, which is based on the
+\IndexedSubtermEmph{bkkalgo}{custom \LaTeX packages} custom package,
+Figure~\ref{fig-sample} and, of course, Table~\ref{tab-sample}. More on this
+stuff in~\cite{karakasis12cslab}.
+
+\begin{algorithm}
+  \algtoprule
+  \begin{algorithmic}[1]
+    \Procedure{MatVecCsr}{$A$::in, $x$::in, $y$::out}
+        \Statex{$A$: matrix in CSR format}
+        \Statex{$x$: input vector}
+        \Statex{$y$: output vector}
+        \ForBounds{$i \gets 0$}{$\MathVar{N}$}
+            \ForBounds{$j \gets \MathVar{rowptr}[i]$}{$\MathVar{rowptr}[i+1]$}
+            \label{al-row-start}
+                \State{$y[i] \gets y[i] + \MathVar{values}[j]\cdot x[\MathVar{colind}[j]]$}
+            \EndFor\label{al-row-end}
+        \EndFor
+    \EndProcedure
+  \end{algorithmic}
+  \algbottomrule
+  \caption{A sample algorithm.}
+  \label{alg-sample}
+\end{algorithm}
+
+\begin{figure}
+  \centering
+  \fbox{Put a graphic here.}
+  \caption{A sample figure.}
+  \label{fig-sample}
+\end{figure}
+
+\begin{table}
+  \centering
+  \fbox{Put some tabular data here.}
+  \caption{A sample table.}
+  \label{tab-sample}
+\end{table}
