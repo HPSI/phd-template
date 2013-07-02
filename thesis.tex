@@ -1,26 +1,27 @@
 \documentclass{cslabthesis}
 
-
 % Some useful packages
-%\usepackage{bkkalgo}
+\usepackage{bkkalgo}
 \usepackage{xspace}
 \usepackage{addlines}
 \usepackage{paralist}
 \usepackage{listings}
 \usepackage[squaren,binary,thinspace,thinqspace,textstyle]{SIunits}
-%
-
-\setromanfont{Minion Pro}
-%\setsansfont{Comic Sans MS}
-\setmonofont{Minion Pro}
-\setmainfont[Mapping=tex-text]{Minion Pro}
 
 % Some useful commands
-%\newcommand\MathVar[1]{\ensuremath{\mathit{#1}}}
-%\newcommand\MathVec[1]{\ensuremath{\mathbf{#1}}}
-\DeclareMathOperator\modulo{mod}
+\newcommand\MathVar[1]{\ensuremath{\mathit{#1}}}
+\newcommand\MathVec[1]{\ensuremath{\mathbf{#1}}}
 \newcommand\AlgFunction[1]{\textsc{#1}}
+\DeclareMathOperator\modulo{mod}
+\DeclareMathOperator\SimdLower{lower_{64}}
+\DeclareMathOperator\SimdUpper{upper_{64}}
+\DeclareMathOperator\Fill{fill}
+\DeclareMathOperator\Perf{perf}
 
+\newcommand\Mem{\PerfModel{Mem}\xspace}
+\newcommand\MemComp{\PerfModel{MemComp}\xspace}
+\newcommand\MemOverlap{\PerfModel{Overlap}\xspace}
+\newcommand\Sparsity{\PerfModel{Sparsity}\xspace}
 
 % Flop unit
 \addunit{\flop}{flop}
@@ -38,10 +39,14 @@
 \newcolumntype{R}[1]{>{\raggedleft}m{#1}}
 \newcommand\tabcell[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
+% Some help with hyphenation, when latex gets it wrong
+% \hyphenation{memory-in-ten-sive}
+
 \author{Vasileios K. Karakasis}
+\authortitle{Electrical and Computer Engineer, Dipl.-Ing.}
 \title{Thesis Title}
 \date{Athens, Greece \\ December, 2012}
-\examsdate{17}{December}{2012}
+\examsdate{19}{December}{2012}
 
 % Committee (order matters)
 \committeememb{Nectarios Koziris}{Associate Prof., NTUA}
@@ -68,23 +73,29 @@
 %% the secondary fonts and the line width
 %%
 
-%% \newcommand\alphabet{abcdefghijklmnopqrstuvwxyz}
-%% \newcommand\baseletter{x}
-%% \newlength\lena
-%% \newlength\lenb
-%% \newlength\lenc
-%% \settowidth\lena{\alphabet}
-%% \typeout{Type size is \the\lena}
-%% \typeout{Line width is \the\linewidth}
+\newcommand\alphabet{abcdefghijklmnopqrstuvwxyz}
+\newcommand\baseletter{x}
+\newlength\lena
+\newlength\lenb
+\newlength\lenc
+\settowidth\lena{\alphabet}
+\typeout{Type size is \the\lena}
+\typeout{Line width is \the\linewidth}
 
-%% \settoheight\lena{\baseletter}
-%% \settoheight\lenb{\textsf{\baseletter}}
-%% \settoheight\lenc{\texttt{\baseletter}}
-%% \typeout{Normal font height is \the\lena}
-%% \typeout{Sans font height is \the\lenb}
-%% \typeout{Truetype font height is \the\lenc}
+\settoheight\lena{\baseletter}
+\settoheight\lenb{\textsf{\baseletter}}
+\settoheight\lenc{\texttt{\baseletter}}
+\typeout{Normal font height is \the\lena}
+\typeout{Sans font height is \the\lenb}
+\typeout{Truetype font height is \the\lenc}
+
+\include{dedication}
 
 \frontmatter
+\cleardoublepage
+\include{abstract}
+
+\cleardoublepage
 \tableofcontents
 
 \cleardoublepage
@@ -96,9 +107,10 @@
 \cleardoublepage
 \listofalgorithms
 
+\include{preface}
+
 \mainmatter
 \include{intro}
-% More chapters to follow
 
 \backmatter
 \bibliography{thesis}

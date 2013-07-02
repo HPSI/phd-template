@@ -6,14 +6,13 @@
 \usepackage{addlines}
 \usepackage{paralist}
 \usepackage{listings}
-%\usepackage[squaren,binary,thinspace,thinqspace,textstyle]{SIunits}
+\usepackage[squaren,binary,thinspace,thinqspace,textstyle]{SIunits}
 
 % Some useful commands
 \newcommand\MathVar[1]{\ensuremath{\mathit{#1}}}
 \newcommand\MathVec[1]{\ensuremath{\mathbf{#1}}}
-\newcommand\Benchmark[1]{\textsf{#1}}
-\DeclareMathOperator\modulo{mod}
 \newcommand\AlgFunction[1]{\textsc{#1}}
+\DeclareMathOperator\modulo{mod}
 
 % Flop unit
 \addunit{\flop}{flop}
@@ -31,10 +30,16 @@
 \newcolumntype{R}[1]{>{\raggedleft}m{#1}}
 \newcommand\tabcell[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
+% Some help with hyphenation, when latex gets it wrong
+% \hyphenation{ε-πε-ξερ-γα-στής}
+
+
 \author{Βασίλειος Κ.\ Καρακάσης}
+\authorgen{Βασιλείου Κ.\ Καρακάση}
+\authortitle{Διπλωματούχου Ηλεκτρολόγου Μηχανικού και Μηχανικού Υπολογιστών}
 \title{Ο Τίτλος}
 \date{Αθήνα, \\ Δεκέμβριος 2012}
-\examsdate{17η}{Δεκεμβρίου}{2012}
+\examsdate{19η}{Δεκεμβρίου}{2012}
 
 % Committee (order matters)
 \committeememb{Νεκτάριος Κοζύρης}{Αναπ.\ Καθηγητής Ε.Μ.Π.}
@@ -61,23 +66,31 @@
 %% the secondary fonts and the line width
 %%
 
-%% \newcommand\alphabet{abcdefghijklmnopqrstuvwxyz}
-%% \newcommand\baseletter{x}
-%% \newlength\lena
-%% \newlength\lenb
-%% \newlength\lenc
-%% \settowidth\lena{\alphabet}
-%% \typeout{Type size is \the\lena}
-%% \typeout{Line width is \the\linewidth}
+\newcommand\alphabet{abcdefghijklmnopqrstuvwxyz}
+\newcommand\baseletter{x}
+\newlength\lena
+\newlength\lenb
+\newlength\lenc
+\settowidth\lena{\alphabet}
+\typeout{Type size is \the\lena}
+\typeout{Line width is \the\linewidth}
 
-%% \settoheight\lena{\baseletter}
-%% \settoheight\lenb{\textsf{\baseletter}}
-%% \settoheight\lenc{\texttt{\baseletter}}
-%% \typeout{Normal font height is \the\lena}
-%% \typeout{Sans font height is \the\lenb}
-%% \typeout{Truetype font height is \the\lenc}
+\settoheight\lena{\baseletter}
+\settoheight\lenb{\textsf{\baseletter}}
+\settoheight\lenc{\texttt{\baseletter}}
+\typeout{Normal font height is \the\lena}
+\typeout{Sans font height is \the\lenb}
+\typeout{Truetype font height is \the\lenc}
+
+\include{dedication}
 
 \frontmatter
+\include{abstract_gr}
+
+\cleardoublepage
+\include{abstract}
+
+\cleardoublepage
 \tableofcontents
 
 \cleardoublepage
@@ -90,6 +103,8 @@
 \listofalgorithms
 
 \include{preface}
+
+\include{abstract_ext_gr}
 
 \mainmatter
 \include{intro_gr}

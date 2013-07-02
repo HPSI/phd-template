@@ -4,23 +4,22 @@ LATEX = xelatex
 LATEX_OPTIONS =
 TARGET_EN = thesis.pdf
 TARGET_GR = thesis_gr.pdf
-TARGET = $(TARGET_GR)
+TARGET = $(TARGET_EN)
 TARGET_BASE = $(basename $(TARGET))
 SOURCES_EN = intro.tex
 SOURCES_GR = intro_gr.tex
-INC = $(SOURCES_GR)
+INC = $(SOURCES_EN)
 
 CLEANFILES = $(TARGET_BASE).pdf \
 	*.ps *.log *.bak *.bbl *.aux *.blg *.dvi *.toc *.out *.lof *.lot *.loa *.ind *.idx *.ilg
 
 RM = /bin/rm -f
-figdir = ./figs
 figs = ntua_logo.eps
 
 all: $(TARGET)
 clean: clean-files clean-figs
 
-$(TARGET): $(figs) $(TARGET_BASE).bbl $(TARGET_BASE).tex $(INC) cslabthesis.cls bkkalgo.sty
+$(TARGET): $(figs) $(TARGET_BASE).ind $(TARGET_BASE).bbl $(TARGET_BASE).tex $(INC) cslabthesis.cls bkkalgo.sty plainnat_gr.bst
 	outfile=`mktemp`; \
 	echo 'Rerun' > $$outfile; \
 	until ! grep 'Rerun' $$outfile; do \
@@ -36,6 +35,10 @@ $(TARGET_BASE).bbl: $(TARGET_BASE).bib
 		$(LATEX) $(LATEX_OPTIONS) $(TARGET_BASE).tex | tee $$outfile; \
 	done; \
 	$(RM) $$outfile
+
+$(TARGET_BASE).ind: $(TARGET_BASE).tex
+	$(LATEX) $(LATEX_OPTIONS) $(TARGET_BASE).tex && \
+makeindex $(TARGET_BASE) && $(LATEX) $(LATEX_OPTIONS) $(TARGET_BASE).tex
 
 %.eps: %.pdf
 	@echo Converting $< to $@ ...; \

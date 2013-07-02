@@ -13,11 +13,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{cslabthesis}
 
-\usepackage{fontspec}
 \newcommand\doc@lang{}
 \newcommand\doc@type{}
-
-
 
 \DeclareOption{english}{\renewcommand\doc@lang{en}}
 \DeclareOption{greek}{\renewcommand\doc@lang{gr}}
@@ -28,18 +25,12 @@
 \ExecuteOptions{english,phdthesis}
 \ProcessOptions
 
-%\LoadClass[11pt,a4paper,twoside,final,showtrims]{memoir}
+\LoadClass[11pt,a4paper,twoside,final,showtrims]{memoir}
 
 \RequirePackage{amsmath}
-\RequirePackage{amssymb}
+%\RequirePackage{amssymb}
 \RequirePackage{amsfonts}
-%\RequirePackage{mathspec}       % Also includes fontspec
-\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
-\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
-%\setmainfont[Mapping=tex-text]{Minion Pro}
-\usepackage{polyglossia}
-\setdefaultlanguage{greek}
-
+\RequirePackage{mathspec}       % Also includes fontspec
 \RequirePackage{xunicode}
 \RequirePackage{xltxtra}
 \RequirePackage{polyglossia}
@@ -54,12 +45,12 @@
 ]{caption}
 
 % Use subfig to setup the fonts
-%\RequirePackage[
-%  justification=raggedright,
-%]{subfig}
+\RequirePackage[
+  justification=raggedright,
+]{subfig}
 \RequirePackage{textcase}
 \RequirePackage{multirow}
-%\RequirePackage[square,semicolon]{natbib}
+\RequirePackage[square,semicolon]{natbib}
 \RequirePackage{xkeyval}
 \RequirePackage[bookmarks]{hyperref}
 
@@ -67,37 +58,41 @@
 \setmainfont[Mapping=tex-text]{Minion Pro}
 
 % Adjust the secondary fonts to have the same lowercase height
-%\setsansfont[Mapping=tex-text,Scale=0.9029]{Myriad Pro}
+\setsansfont[Mapping=tex-text,Scale=0.9029]{Myriad Pro}
 
 % Quick fix for bug in polyglossia for greek support
 % See also: https://github.com/fc7/polyglossia/issues/4
-%\ifthenelse{\equal{\doc@lang}{gr}}{
+\ifthenelse{\equal{\doc@lang}{gr}}{
   \newfontfamily\greekfont[Script=Greek,Mapping=tex-text]{Minion Pro}
-%}{}
+}{}
 
 
 % Set up the math environment
-%\setmathsfont(Digits,Latin,Greek){Minion Pro}
-%\setmathrm{Minion Pro}
+\setmathsfont(Digits,Latin,Greek){Minion Pro}
+\setmathrm{Minion Pro}
 
 %
 % Fix punctuation marks in formulas -- mathspec bug
 % 
 % Fix found here: http://tex.stackexchange.com/questions/38711/punctuation-marks-in-math-mode-in-xetex-mathspec
 % 
-%\DeclareMathSymbol{,}{\mathpunct}{\eu@LatinLowercase@symfont}{`,}
-%\DeclareMathSymbol{.}{\mathord}{\eu@LatinLowercase@symfont}{`.}
-%\DeclareMathSymbol{<}{\mathrel}{\eu@LatinLowercase@symfont}{`<}
-%\DeclareMathSymbol{>}{\mathrel}{\eu@LatinLowercase@symfont}{`>}
-%\DeclareMathSymbol{/}{\mathord}{\eu@LatinLowercase@symfont}{`/}
-%\XeTeXDeclareMathSymbol{^^^^2026}{\mathinner}{\eu@LatinLowercase@symfont}{"2026}[\mathellipsis]
+\DeclareMathSymbol{,}{\mathpunct}{\eu@LatinLowercase@symfont}{`,}
+\DeclareMathSymbol{.}{\mathord}{\eu@LatinLowercase@symfont}{`.}
+\DeclareMathSymbol{<}{\mathrel}{\eu@LatinLowercase@symfont}{`<}
+\DeclareMathSymbol{>}{\mathrel}{\eu@LatinLowercase@symfont}{`>}
+\DeclareMathSymbol{/}{\mathord}{\eu@LatinLowercase@symfont}{`/}
+\XeTeXDeclareMathSymbol{^^^^2026}{\mathinner}{\eu@LatinLowercase@symfont}{"2026}[\mathellipsis]
 
+\providecommand\theauthorgen{\theauthor}
+\providecommand\theauthortitle{}
 \providecommand\theinstitution{}
 \providecommand\theschool{}
 \providecommand\thedivision{}
 \providecommand\theexamsday{}
 \providecommand\theexamsmonth{}
 \providecommand\theexamsyear{}
+\providecommand\authorgen[1]{\renewcommand\theauthorgen{#1}}
+\providecommand\authortitle[1]{\renewcommand\theauthortitle{#1}}
 \providecommand\institution[1]{\renewcommand\theinstitution{#1}}
 \providecommand\school[1]{\renewcommand\theschool{#1}}
 \providecommand\division[1]{\renewcommand\thedivision{#1}}
@@ -110,7 +105,7 @@
 \providecommand\copyrightnotice{}
 \newcommand\th@advisorytext{}
 \newcommand\th@examiningtext{}
-\newcommand\th@authortitle{}
+\newcommand\th@authordrtitle{}
 \newcommand\th@signatureplaceholder{\rule{5em}{.4pt}}
 
 % Set the document description
@@ -119,12 +114,12 @@
     \renewcommand\documentdescr{Διδακτορική Διατριβή}
     \renewcommand\th@advisorytext{Συμβουλευτική Επιτροπή\xspace}
     \renewcommand\th@examiningtext{Εγκρίθηκε από την επταμελή επιτροπή\xspace}
-    \renewcommand\th@authortitle{Διδάκτωρ Εθνικού Μετσοβίου Πολυτεχνείου\xspace}
+    \renewcommand\th@authordrtitle{Διδάκτωρ Εθνικού Μετσοβίου Πολυτεχνείου\xspace}
   }{
     \renewcommand\documentdescr{Ph.D.\ Thesis}
     \renewcommand\th@advisorytext{Advisory Committee\xspace}
     \renewcommand\th@examiningtext{Approved by the examining committee\xspace}
-    \renewcommand\th@authortitle{Ph.D., National Technical University of Athens, Greece.\xspace}
+    \renewcommand\th@authordrtitle{Ph.D., National Technical University of Athens, Greece.\xspace}
   }
 }{}
 
@@ -162,9 +157,9 @@
     κερδοσκοπικό σκοπό πρέπει να απευθύνονται προς τον συγγραφέα.\\
 
     \par\noindent
-    Οι απόψεις και τα συμπεράσματα που περιέχονται σε αυτό το έγγραφο εκφράζουν
-    τον συγγραφέα και δεν πρέπει να ερμηνευθεί ότι αντιπροσωπεύουν τις επίσημες
-    θέσεις του Εθνικού Μετσοβίου Πολυτεχνείου.
+    Η έγκριση της διδακτορικής διατριβής από την Ανώτατη Σχολή των Ηλεκτρολόγων
+    Μηχανικών και Μηχανικών Υπολογιστών του Ε.\ Μ.\ Πολυτεχνείου δεν υποδηλώνει
+    αποδοχή των γνωμών του συγγραφέα (Ν.\ 5343/1932, άρθρο 202).
   }
 }
 
@@ -182,7 +177,11 @@
     \vspace{3\baselineskip}
     {\LARGE\documentdescr}
     \vfill
-    {\Large \theauthor }
+    {\Large \theauthorgen } \\
+    \ifthenelse{\equal{\doc@type}{phdthesis}}{
+      \vspace{.5\baselineskip}
+      \emph{\theauthortitle}
+    }{}
     \vfill
     \thedate
   \end{center}
@@ -206,7 +205,11 @@
       \vspace{1.5\baselineskip}
       { \Large \documentdescr } \\
       \vspace{1.5\baselineskip}
-      { \large \theauthor } \\
+      { \large \theauthorgen } \\
+      \ifthenelse{\equal{\doc@type}{phdthesis}}{
+        \vspace{.5\baselineskip}
+        \emph{\theauthortitle}
+      }{}
     \end{center}
 
     \vspace{1.5\baselineskip}
@@ -280,7 +283,7 @@
     \begin{tabular}{lll}
       \th@signatureplaceholder \\
       \theauthor \\
-      \th@authortitle
+      \th@authordrtitle
     \end{tabular}
     \vfill
     \copyrightnotice
@@ -297,21 +300,40 @@
 
 % Setup the title
 % Add a hook for setting up the author and title in pdf properties
-%\renewcommand\maketitlehookd{
-%  \hypersetup{
-%    pdfauthor = \theauthor,
-%    pdftitle = \thetitle,
-%  }
-%}
+\renewcommand\maketitlehookd{
+  \hypersetup{
+    pdfauthor = \theauthor,
+    pdftitle = \thetitle,
+  }
+}
 
 \renewcommand\maketitle{
   \begin{titlingpage}
     \titlepage
-    %\maketitlehookd
+    \maketitlehookd
     \cleardoublepage
     \approvalpage
   \end{titlingpage}
 }
+
+% Abstract formatting
+\renewcommand\abstractnamefont{\Large\bfseries}
+\renewcommand\abstracttextfont{\normalfont}
+\renewcommand\abstitleskip{\baselineskip}
+
+% Keyword environment and related stuff
+\ifthenelse{\equal{\doc@lang}{gr}}{
+  \providecommand\KeywordName{Λέξεις Κλειδιά}
+}{
+  \providecommand\KeywordName{Keywords}
+}
+\providecommand\KeywordFont{\bfseries}
+\providecommand\KeywordTitleDelim{: }
+\providecommand\KeywordTextFont{\normalfont}
+\providecommand\KeywordBeforeSkip{\vspace{\baselineskip}}
+\providecommand\KeywordAfterSkip{\vspace{\parskip}}
+
+\newenvironment{Keywords}{\KeywordBeforeSkip{\KeywordFont\KeywordName\KeywordTitleDelim}\KeywordTextFont}{\KeywordAfterSkip\normalfont\par}
 
 % Indexing commands and term formatting
 \newcommand\term@font{\em}
@@ -343,21 +365,25 @@
 \providecommand\IndexedSubtermEmph[2]{{\term@font\IndexedSubterm{#1}{#2}}}
 \providecommand\IndexedSubsubtermEmph[3]{{\term@font\IndexedSubsubterm{#1}{#2}{#3}}}
 
+\ifthenelse{\equal{\doc@lang}{gr}}{
+  \renewcommand*\seename{βλ.\ }
+}{}
+
 % Page layout
-%\stockaiv
-%\pageaiv
+\stockaiv
+\pageaiv
 %% \stockbv
 %% \pagebv
 
-%\quarkmarks
-%\settrimmedsize{\paperheight}{\paperwidth}{*}
-%\setlength\trimtop{.5\stockheight-.5\paperheight}
-%\setlength\trimedge{.5\stockwidth-.5\paperwidth}
-%\settrims{\trimtop}{\trimedge}
+\quarkmarks
+\settrimmedsize{\paperheight}{\paperwidth}{*}
+\setlength\trimtop{.5\stockheight-.5\paperheight}
+\setlength\trimedge{.5\stockwidth-.5\paperwidth}
+\settrims{\trimtop}{\trimedge}
 
 % Adjust the text width of the title pages
 \newlength\titleadjust
-%\setlength\titleadjust{\paperwidth-\textwidth-2\spinemargin}
+\setlength\titleadjust{\paperwidth-\textwidth-2\spinemargin}
 
 %
 % The text width depends on the type size. Follow the typographic instructions
@@ -368,27 +394,27 @@
 % 11pt. Be sure to adjust this, if you change your font or type size. We have
 % adjusted experimentally the line width computed in Table 2.2
 %
-%\settypeblocksize{40\baselineskip}{339pt}{*}
-%\setlrmargins{*}{*}{1.414}
-%\setulmargins{*}{*}{1}
+\settypeblocksize{40\baselineskip}{339pt}{*}
+\setlrmargins{*}{*}{1.414}
+\setulmargins{*}{*}{1}
 \setlength\headsep{2\baselineskip}
 \setlength\footskip{3.5\baselineskip}
-%\checkandfixthelayout
+\checkandfixthelayout
 
 % Document styling
-%\chapterstyle{ell}
-%\pagestyle{Ruled}
-%\aliaspagestyle{titlingpage}{empty}
-%\setsecnumdepth{subsection}
-%\settocdepth{subsection}
-%\setlength\parskip{0pt}
+\chapterstyle{ell}
+\pagestyle{Ruled}
+\aliaspagestyle{titlingpage}{empty}
+\setsecnumdepth{subsection}
+\settocdepth{subsection}
+\setlength\parskip{0pt}
 
 % Some fine-tuning of the header styles
-%\setsecheadstyle{\Large\bfseries\sffamily}
-%\setsubsecheadstyle{\large\bfseries\sffamily}
-%\setsubsubsecheadstyle{\large\bfseries\sffamily}
-%\setparaheadstyle{\bfseries\sffamily}
-%\setbeforeparaskip{\baselineskip}
+\setsecheadstyle{\Large\bfseries\sffamily}
+\setsubsecheadstyle{\large\bfseries\sffamily}
+\setsubsubsecheadstyle{\large\bfseries\sffamily}
+\setparaheadstyle{\bfseries\sffamily}
+\setbeforeparaskip{\baselineskip}
 
 % Setup some float parameters
 \setlength\floatsep{1em}
@@ -404,36 +430,44 @@
 \captionsetup[ContinuedFloat]{labelformat=continued}
 
 % Special setup for subfigure captions in greek
-%\ifthenelse{\equal{\doc@lang}{gr}}{
-%  \renewcommand\thesubfigure{\roman{subfigure}}
-%}{}
+\ifthenelse{\equal{\doc@lang}{gr}}{
+  \renewcommand\thesubfigure{\roman{subfigure}}
+}{}
 
 % Footnote setup
-%\setlength\footmarkwidth{-1ex}
-%\setlength\footmarksep{1ex}
+\setlength\footmarkwidth{-1ex}
+\setlength\footmarksep{1ex}
 
 %
-%% Extra space for large floats. Use with the adjustwidth environment.
-%%
-%\providecommand\FloatExtraWidth{.1\textwidth}
+% Extra space for large floats. Use with the adjustwidth environment.
 %
-%% Lists and enumerations
-%\firmlists
-%\setlength\leftmargin{\parindent}
-%
-%% Other style commands
-%\urlstyle{sf}
-%
-%% Bibliography style
-%\bibliographystyle{plainnat}
+\providecommand\FloatExtraWidth{.1\textwidth}
 
-\renewcommand{\cite}[2][]{\citep[#1]{#2}}
+% Lists and enumerations
+\firmlists
+\setlength\leftmargin{\parindent}
+
+% Other style commands
+\urlstyle{sf}
+
+% Bibliography style
+\ifthenelse{\equal{\doc@lang}{gr}}{
+  \bibliographystyle{plainnat_gr}
+}{
+  \bibliographystyle{plainnat}
+}
+
+\ifthenelse{\equal{\doc@lang}{gr}}{
+  \renewcommand{\cite}[2][]{\textenglish{\citep[#1]{#2}}}
+}{
+  \renewcommand{\cite}[2][]{\citep[#1]{#2}}
+}
 
 % Setup hyperref
-%\hypersetup{
-%  pdfsubject = {\documentdescr},
-%  pdfdisplaydoctitle,
-%  pdfborder = false,
-%}
+\hypersetup{
+  pdfsubject = {\documentdescr},
+  pdfdisplaydoctitle,
+  pdfborder = false,
+}
 
 \makeatother
