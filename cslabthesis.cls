@@ -25,15 +25,19 @@
 \ExecuteOptions{english,phdthesis}
 \ProcessOptions
 
-\LoadClass[11pt,a4paper,twoside,final,showtrims]{memoir}
+\LoadClass[10pt,a4paper,twoside,final,showtrims]{memoir}
 
 \RequirePackage{amsmath}
 %\RequirePackage{amssymb}
 \RequirePackage{amsfonts}
-\RequirePackage{mathspec}       % Also includes fontspec
+\RequirePackage{fontspec}       % Also includes fontspec
 \RequirePackage{xunicode}
 \RequirePackage{xltxtra}
 \RequirePackage{polyglossia}
+\newfontfamily\greekfont[Mapping=tex-text]{Minion Pro}
+\setromanfont{Minion Pro}
+\setmonofont{Minion Pro}
+
 \RequirePackage{ifthen}
 \RequirePackage{graphicx}
 \RequirePackage[
@@ -68,21 +72,21 @@
 
 
 % Set up the math environment
-\setmathsfont(Digits,Latin,Greek){Minion Pro}
-\setmathrm{Minion Pro}
+%\setmathsfont(Digits,Latin,Greek){Minion Pro}
+%\setmathrm{Minion Pro}
 
 %
 % Fix punctuation marks in formulas -- mathspec bug
-% 
+%
 % Fix found here: http://tex.stackexchange.com/questions/38711/punctuation-marks-in-math-mode-in-xetex-mathspec
-% 
-\DeclareMathSymbol{,}{\mathpunct}{\eu@LatinLowercase@symfont}{`,}
-\DeclareMathSymbol{.}{\mathord}{\eu@LatinLowercase@symfont}{`.}
-\DeclareMathSymbol{<}{\mathrel}{\eu@LatinLowercase@symfont}{`<}
-\DeclareMathSymbol{>}{\mathrel}{\eu@LatinLowercase@symfont}{`>}
-\DeclareMathSymbol{/}{\mathord}{\eu@LatinLowercase@symfont}{`/}
-\XeTeXDeclareMathSymbol{^^^^2026}{\mathinner}{\eu@LatinLowercase@symfont}{"2026}[\mathellipsis]
-
+%
+%\DeclareMathSymbol{,}{\mathpunct}{\eu@LatinLowercase@symfont}{`,}
+%\DeclareMathSymbol{.}{\mathord}{\eu@LatinLowercase@symfont}{`.}
+%\DeclareMathSymbol{<}{\mathrel}{\eu@LatinLowercase@symfont}{`<}
+%\DeclareMathSymbol{>}{\mathrel}{\eu@LatinLowercase@symfont}{`>}
+%\DeclareMathSymbol{/}{\mathord}{\eu@LatinLowercase@symfont}{`/}
+%\XeTeXDeclareMathSymbol{^^^^2026}{\mathinner}{\eu@LatinLowercase@symfont}{"2026}[\mathellipsis]
+%
 \providecommand\theauthorgen{\theauthor}
 \providecommand\theauthortitle{}
 \providecommand\theinstitution{}
@@ -111,10 +115,10 @@
 % Set the document description
 \ifthenelse{\equal{\doc@type}{phdthesis}}{
   \ifthenelse{\equal{\doc@lang}{gr}}{
-    \renewcommand\documentdescr{Διδακτορική Διατριβή}
+    \renewcommand\documentdescr{Ενδιάμεση Κρίση}
     \renewcommand\th@advisorytext{Συμβουλευτική Επιτροπή\xspace}
-    \renewcommand\th@examiningtext{Εγκρίθηκε από την επταμελή επιτροπή\xspace}
-    \renewcommand\th@authordrtitle{Διδάκτωρ Εθνικού Μετσοβίου Πολυτεχνείου\xspace}
+    \renewcommand\th@examiningtext{Εγκρίθηκε από την πενταμελή επιτροπή\xspace}
+    \renewcommand\th@authordrtitle{Υποψήφιος Διδάκτωρ Εθνικού Μετσοβίου Πολυτεχνείου\xspace}
   }{
     \renewcommand\documentdescr{Ph.D.\ Thesis}
     \renewcommand\th@advisorytext{Advisory Committee\xspace}
@@ -147,7 +151,7 @@
     \noindent
     Copyright \textcopyright\ \theauthor, \theexamsyear.\\
     Με επιφύλαξη παντός δικαιώματος. All rights reserved\\
-    
+
     \par\noindent
     Απαγορεύεται η αντιγραφή, αποθήκευση και διανομή της παρούσας εργασίας, εξ
     ολοκλήρου ή τμήματος αυτής, για εμπορικό σκοπό. Επιτρέπεται η ανατύπωση,
@@ -166,9 +170,9 @@
 % Title pages
 \providecommand\titlepage{
   \thispagestyle{empty}
-  \begin{adjustwidth*}{}{-\titleadjust}
+%  \begin{adjustwidth*}{}{-\titleadjust}
   \begin{center}
-    { \includegraphics[width=5em]{ntua_logo} } \\ 
+    { \includegraphics[width=5em]{ntua_logo} } \\
     { \Large\bfseries\theinstitution } \\
     { \theschool } \\
     { \thedivision } \\
@@ -185,12 +189,12 @@
     \vfill
     \thedate
   \end{center}
-  \end{adjustwidth*}
+%  \end{adjustwidth*}
 }
 
 \providecommand\approvalpage{
   \thispagestyle{empty}
-  \begin{adjustwidth*}{}{-\titleadjust}
+%  \begin{adjustwidth*}{}{-\titleadjust}
     \begin{minipage}{5em}
       \includegraphics[width=5em]{ntua_logo}
     \end{minipage}
@@ -245,7 +249,7 @@
         \committee@c \\
         \committeepos@c
       \end{tabular} \\ [3.5em]
-      
+
       % New committee row
       \begin{tabular}[c]{ll}
         \th@signatureplaceholder \\
@@ -256,30 +260,30 @@
         \th@signatureplaceholder \\
         \committee@e \\
         \committeepos@e
-      \end{tabular} &
-      \begin{tabular}[c]{ll}
-        \th@signatureplaceholder \\
-        \committee@f \\
-        \committeepos@f
-      \end{tabular} \\ [3.5em]
+      \end{tabular} & \\
+%      \begin{tabular}[c]{ll}
+%        \th@signatureplaceholder \\
+%        \committee@f \\
+%        \committeepos@f
+%      \end{tabular} \\ [3.5em]
 
-      % New committee row
-      &
-      \begin{tabular}[c]{ll}
-        \th@signatureplaceholder \\
-        \committee@g \\
-        \committeepos@g
-      \end{tabular} &
-      \\
+%      % New committee row
+%      &
+%      \begin{tabular}[c]{ll}
+%        \th@signatureplaceholder \\
+%        \committee@g \\
+%        \committeepos@g
+%      \end{tabular} &
+%      \\
     \end{tabular}
     \vfill
     \begin{center}
       \thedate
     \end{center}
-  \end{adjustwidth*}
+%  \end{adjustwidth*}
   \clearpage
   ~\vfill
-  \begin{adjustwidth*}{}{-\titleadjust}
+%  \begin{adjustwidth*}{}{-\titleadjust}
     \begin{tabular}{lll}
       \th@signatureplaceholder \\
       \theauthor \\
@@ -287,7 +291,7 @@
     \end{tabular}
     \vfill
     \copyrightnotice
-  \end{adjustwidth*}
+%  \end{adjustwidth*}
 }
 
 % Committee members
@@ -377,13 +381,13 @@
 
 \quarkmarks
 \settrimmedsize{\paperheight}{\paperwidth}{*}
-\setlength\trimtop{.5\stockheight-.5\paperheight}
-\setlength\trimedge{.5\stockwidth-.5\paperwidth}
-\settrims{\trimtop}{\trimedge}
+%\setlength\trimtop{.5\stockheight-.5\paperheight}
+%\setlength\trimedge{.5\stockwidth-.5\paperwidth}
+%\settrims{\trimtop}{\trimedge}
 
 % Adjust the text width of the title pages
-\newlength\titleadjust
-\setlength\titleadjust{\paperwidth-\textwidth-2\spinemargin}
+%\newlength\titleadjust
+%\setlength\titleadjust{\paperwidth-\textwidth-2\spinemargin}
 
 %
 % The text width depends on the type size. Follow the typographic instructions

@@ -7,6 +7,10 @@
 \usepackage{paralist}
 \usepackage{listings}
 \usepackage[squaren,binary,thinspace,thinqspace,textstyle]{SIunits}
+\usepackage{acronym}
+\usepackage[acronym,toc,shortcuts]{glossaries}
+
+
 
 % Some useful commands
 \newcommand\MathVar[1]{\ensuremath{\mathit{#1}}}
@@ -34,29 +38,111 @@
 % \hyphenation{ε-πε-ξερ-γα-στής}
 
 
-\author{Βασίλειος Κ.\ Καρακάσης}
-\authorgen{Βασιλείου Κ.\ Καρακάση}
+\author{Αναστάσιος Α.\ Νάνος}
+\authorgen{Αναστάσιου Α.\ Νάνου}
 \authortitle{Διπλωματούχου Ηλεκτρολόγου Μηχανικού και Μηχανικού Υπολογιστών}
-\title{Ο Τίτλος}
-\date{Αθήνα, \\ Δεκέμβριος 2012}
-\examsdate{19η}{Δεκεμβρίου}{2012}
+\title{Αποδοτικός διαμοιρασμός πόρων Εισόδου/Εξόδου σε περιβάλλοντα Εικονικών Μηχανών}
+\date{Αθήνα, \\ Ιούλιος 2012}
+%\examsdate{19η}{Δεκεμβρίου}{2012}
 
 % Committee (order matters)
-\committeememb{Νεκτάριος Κοζύρης}{Αναπ.\ Καθηγητής Ε.Μ.Π.}
-\committeememb{Παναγιώτης Τσανάκας}{Καθηγητής Ε.Μ.Π.}
+\committeememb{Νεκτάριος Κοζύρης}{Καθηγητής Ε.Μ.Π.}
 \committeememb{Ανδρέας Σταφυλοπάτης}{Καθηγητής Ε.Μ.Π.}
-\committeememb{Ανδρέας Μπουντουβής}{Καθηγητής Ε.Μ.Π.}
-\committeememb{Γιώργος Στάμου}{Λέκτορας Ε.Μ.Π.}
-\committeememb{Δημήτριος Σούντρης}{Επίκ.\ Καθηγητής Ε.Μ.Π.}
-\committeememb{Ιωάννης Κοτρώνης}{Επίκ.\ Καθηγητής Ε.Κ.Π.Α.}
+\committeememb{Ιωάννης Μαΐστρος}{Επίκ.\ Καθηγητής Ε.Μ.Π.}
+\committeememb{Παναγιώτης Τσανάκας}{Καθηγητής Ε.Μ.Π.}
+\committeememb{Δημήτριος Τσουμάκος}{Επίκ.\ Καθηγητής Ιόνιου Πανεπιστημίου}
+\committeememb{}{}
+\committeememb{}{}
+%\committeememb{Ιωάννης Κοτρώνης}{Επίκ.\ Καθηγητής Ε.Κ.Π.Α.}
 
+%\committeememb{Nectarios Koziris}{Prof., NTUA}
+%\committeememb{Andreas Stafylopatis}{Prof., NTUA}
+%\committeememb{Ioannis Maistros}{Assistant Prof., NTUA}
+%\committeememb{Panagiotis Tsanakas}{Prof., NTUA}
+%\committeememb{Dimitrios Tsoumakos}{Assistant Prof., Ionian Univ.}
+%\committeememb{}{Assistant Prof., NTUA}
+%\committeememb{}{Assistant Prof., UOA}
 % University, school and division
 \institution{Εθνικό Μετσόβιο Πολυτεχνείο}
 \school{Σχολή Ηλεκτρολόγων Μηχανικών και Μηχανικών Υπολογιστών}
 \division{Τομέας Τεχνολογίας Πληροφορικής και Υπολογιστών}
 
+\newcommand{\en}{}
+\usepackage{listings}
+\lstloadlanguages{[GNU]C++,C}
+\lstdefinestyle{cstyle}{
+  language=C,
+  basicstyle=\small,
+  keywordstyle=\color{black}\bfseries,
+  commentstyle=\textit,
+  identifierstyle=\ttfamily,
+  showspaces=false,
+  columns=fullflexible,
+  framexrightmargin=-.2\textwidth,
+  breaklines=true,
+  morekeywords={uint8_t,uint16_t,uint32_t,uint64_t,size_t},
+  mathescape=true,
+  literate=%
+  {-}{}{0\discretionary{-}{}{-}}%
+}
+
+\lstnewenvironment{clisting}{
+  \noindent
+  \lstset{style=cstyle}
+} {
+}
+
+\usepackage[Q=yes]{examplep}
+
+\newcommand{\clstinline}[1]{\en{\Q{#1}}}
+
 \makeindex
 \indexintoc
+
+\newacronym{PCI}{PCI}{PCI}
+\newacronym{PCI BAR}{PCI BAR}{PCI Base Address Register}
+\newacronym{SR-IOV}{SR-IOV}{Single Root I/O Virtualization}
+\newacronym{NIC}{NIC}{Network Interface Card}
+\newacronym{VM}{VM}{Virtual Machine}
+\newacronym{VMM}{VMM}{Virtual Machine Monitor}
+\newacronym{BTL}{BTL}{Byte Transfer Layer}
+\newacronym{HPC}{HPC}{High-Performance Computing}
+\newacronym{IOV}{IOV}{I/O Virtualization}
+\newacronym{PV}{PV}{ParaVirtualization}
+\newacronym{SLA}{SLA}{Service Level Agreement}
+\newacronym{QoS}{QoS}{Quality of Service}
+
+\long\def\unmarkedfootnote#1{{\long\def\@makefntext##1{##1}
+\footnotetext{#1}}}
+\makeatother
+%\titlerunning{}
+%\author{Anastassios Nanos and Nectarios Koziris}
+
+%\authorrunning{et. al}
+
+
+\author{Anastassios Nanos}
+\title{Αποδοτικός διαμοιρασμός πόρων Εισόδου / Εξόδου σε περιβάλλοντα εικονικών μηχανών}
+\date{Αθήνα\\ Ιούλιος, 2013}
+%\examsdate{17}{December}{2012}
+
+% Committee (order matters)
+%\committeememb{Nectarios Koziris}{Prof., NTUA}
+%\committeememb{Andreas Stafylopatis}{Prof., NTUA}
+%\committeememb{Ioannis Maistros}{Assistant Prof., NTUA}
+%\committeememb{Panagiotis Tsanakas}{Prof., NTUA}
+%\committeememb{Dimitrios Tsoumakos}{Assistant Prof., Ionian Univ.}
+%\committeememb{}{Assistant Prof., NTUA}
+%\committeememb{}{Assistant Prof., UOA}
+
+% University, school and division
+%\institution{National Technical University of Athens}
+%\school{School of Electrical and Computer Engineering}
+%\division{Division of Computer Science}
+
+%\makeindex
+%\indexintoc
+
 
 \begin{document}
 \maketitle
@@ -96,19 +182,20 @@
 \cleardoublepage
 \listoffigures
 
-\cleardoublepage
-\listoftables
+%\cleardoublepage
+%\listoftables
 
-\cleardoublepage
-\listofalgorithms
+%\cleardoublepage
+%\listofalgorithms
 
 \include{preface}
 
-\include{abstract_ext_gr}
+%\input{misc}
+
+
+%\include{abstract_ext_gr}
 
 \mainmatter
-\include{intro_gr}
-% More chapters to follow
 
 \backmatter
 \bibliography{thesis_gr}
