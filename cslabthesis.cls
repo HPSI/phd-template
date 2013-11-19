@@ -30,6 +30,7 @@
 \RequirePackage{amsmath}
 %\RequirePackage{amssymb}
 \RequirePackage{amsfonts}
+\RequirePackage{calc}
 \RequirePackage{mathspec}       % Also includes fontspec
 \RequirePackage{xunicode}
 \RequirePackage{xltxtra}
