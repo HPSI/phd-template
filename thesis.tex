@@ -1,4 +1,4 @@
-\documentclass{cslabthesis}
+\documentclass[diploma]{cslabthesis}
 
 % Some useful packages
 \usepackage{bkkalgo}
@@ -13,15 +13,6 @@
 \newcommand\MathVec[1]{\ensuremath{\mathbf{#1}}}
 \newcommand\AlgFunction[1]{\textsc{#1}}
 \DeclareMathOperator\modulo{mod}
-\DeclareMathOperator\SimdLower{lower_{64}}
-\DeclareMathOperator\SimdUpper{upper_{64}}
-\DeclareMathOperator\Fill{fill}
-\DeclareMathOperator\Perf{perf}
-
-\newcommand\Mem{\PerfModel{Mem}\xspace}
-\newcommand\MemComp{\PerfModel{MemComp}\xspace}
-\newcommand\MemOverlap{\PerfModel{Overlap}\xspace}
-\newcommand\Sparsity{\PerfModel{Sparsity}\xspace}
 
 % Flop unit
 \addunit{\flop}{flop}
@@ -72,22 +63,20 @@
 %% Uncomment the following to check the type sizes for adjusting the scaling of
 %% the secondary fonts and the line width
 %%
-
-\newcommand\alphabet{abcdefghijklmnopqrstuvwxyz}
-\newcommand\baseletter{x}
-\newlength\lena
-\newlength\lenb
-\newlength\lenc
-\settowidth\lena{\alphabet}
-\typeout{Type size is \the\lena}
-\typeout{Line width is \the\linewidth}
-
-\settoheight\lena{\baseletter}
-\settoheight\lenb{\textsf{\baseletter}}
-\settoheight\lenc{\texttt{\baseletter}}
-\typeout{Normal font height is \the\lena}
-\typeout{Sans font height is \the\lenb}
-\typeout{Truetype font height is \the\lenc}
+%% \newcommand\alphabet{abcdefghijklmnopqrstuvwxyz}
+%% \newcommand\baseletter{x}
+%% \newlength\lena
+%% \newlength\lenb
+%% \newlength\lenc
+%% \settowidth\lena{\alphabet}
+%% \typeout{Type size is \the\lena}
+%% \typeout{Line width is \the\linewidth}
+%% \settoheight\lena{\baseletter}
+%% \settoheight\lenb{\textsf{\baseletter}}
+%% \settoheight\lenc{\texttt{\baseletter}}
+%% \typeout{Normal font height is \the\lena}
+%% \typeout{Sans font height is \the\lenb}
+%% \typeout{Truetype font height is \the\lenc}
 
 \include{dedication}
 

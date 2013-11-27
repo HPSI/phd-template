@@ -28,7 +28,6 @@
 \LoadClass[11pt,a4paper,twoside,final,showtrims]{memoir}
 
 \RequirePackage{amsmath}
-%\RequirePackage{amssymb}
 \RequirePackage{amsfonts}
 \RequirePackage{calc}
 \RequirePackage{mathspec}       % Also includes fontspec
@@ -120,15 +119,21 @@
     \renewcommand\documentdescr{Ph.D.\ Thesis}
     \renewcommand\th@advisorytext{Advisory Committee\xspace}
     \renewcommand\th@examiningtext{Approved by the examining committee\xspace}
-    \renewcommand\th@authordrtitle{Ph.D., National Technical University of Athens, Greece.\xspace}
+    \renewcommand\th@authordrtitle{Ph.D., National Technical University of Athens, Greece\xspace}
   }
 }{}
 
 \ifthenelse{\equal{\doc@type}{diploma}}{
   \ifthenelse{\equal{\doc@lang}{gr}}{
     \renewcommand\documentdescr{Διπλωματική εργασία}
+    \renewcommand\th@advisorytext{Επιβλέπων καθηγητής\xspace}
+    \renewcommand\th@examiningtext{Εγκρίθηκε από την τριμελή επιτροπή\xspace}
+    \renewcommand\th@authordrtitle{Διπλωματούχος Εθνικού Μετσοβίου Πολυτεχνείου\xspace}
   }{
     \renewcommand\documentdescr{Diploma Thesis}
+    \renewcommand\th@advisorytext{Supervisor\xspace}
+    \renewcommand\th@examiningtext{Approved by the examining committee\xspace}
+    \renewcommand\th@authordrtitle{Dipl.-Ing., National Technical University of Athens, Greece\xspace}
   }
 }{}
 
@@ -158,9 +163,20 @@
     κερδοσκοπικό σκοπό πρέπει να απευθύνονται προς τον συγγραφέα.\\
 
     \par\noindent
-    Η έγκριση της διδακτορικής διατριβής από την Ανώτατη Σχολή των Ηλεκτρολόγων
-    Μηχανικών και Μηχανικών Υπολογιστών του Ε.\ Μ.\ Πολυτεχνείου δεν υποδηλώνει
-    αποδοχή των γνωμών του συγγραφέα (Ν.\ 5343/1932, άρθρο 202).
+
+    \ifthenelse{\equal{\doc@type}{phdthesis}}
+    {
+      Η έγκριση της διδακτορικής διατριβής από την Ανώτατη Σχολή των
+      Ηλεκτρολόγων Μηχανικών και Μηχανικών Υπολογιστών του Ε.\ Μ.\ Πολυτεχνείου
+      δεν υποδηλώνει αποδοχή των γνωμών του συγγραφέα (Ν.\ 5343/1932, άρθρο
+      202). Οι απόψεις και τα συμπεράσματα που περιέχονται σε αυτό το έγγραφο
+      εκφράζουν τον συγγραφέα και δεν πρέπει να ερμηνευθεί ότι αντιπροσωπεύουν
+      τις επίσημες θέσεις του Εθνικού Μετσοβίου Πολυτεχνείου.
+    }{
+      Οι απόψεις και τα συμπεράσματα που περιέχονται σε αυτό το έγγραφο
+      εκφράζουν τον συγγραφέα και δεν πρέπει να ερμηνευθεί ότι αντιπροσωπεύουν
+      τις επίσημες θέσεις του Εθνικού Μετσοβίου Πολυτεχνείου.
+    }
   }
 }
 
@@ -217,8 +233,12 @@
     \par\noindent
     \begin{tabular}{ll}
       {\bfseries\th@advisorytext:} & \committee@a \\
+      \ifthenelse{\equal{\doc@type}{phdthesis}}{
+        % the following rows are only valid for Ph.D. theses
                                    & \committee@b \\
                                    & \committee@c \\
+
+      }{}
     \end{tabular}
 
     \vfill
@@ -247,31 +267,34 @@
         \committeepos@c
       \end{tabular} \\ [3.5em]
       
-      % New committee row
-      \begin{tabular}[c]{ll}
-        \th@signatureplaceholder \\
-        \committee@d \\
-        \committeepos@d
-      \end{tabular} &
-      \begin{tabular}[c]{ll}
-        \th@signatureplaceholder \\
-        \committee@e \\
-        \committeepos@e
-      \end{tabular} &
-      \begin{tabular}[c]{ll}
-        \th@signatureplaceholder \\
-        \committee@f \\
-        \committeepos@f
-      \end{tabular} \\ [3.5em]
+      \ifthenelse{\equal{\doc@type}{phdthesis}}{
+        % The following rows are only valid for Ph.D. theses
+        % New committee row
+        \begin{tabular}[c]{ll}
+          \th@signatureplaceholder \\
+          \committee@d \\
+          \committeepos@d
+        \end{tabular} &
+        \begin{tabular}[c]{ll}
+          \th@signatureplaceholder \\
+          \committee@e \\
+          \committeepos@e
+        \end{tabular} &
+        \begin{tabular}[c]{ll}
+          \th@signatureplaceholder \\
+          \committee@f \\
+          \committeepos@f
+        \end{tabular} \\ [3.5em]
 
-      % New committee row
-      &
-      \begin{tabular}[c]{ll}
-        \th@signatureplaceholder \\
-        \committee@g \\
-        \committeepos@g
-      \end{tabular} &
-      \\
+        % New committee row
+        &
+        \begin{tabular}[c]{ll}
+          \th@signatureplaceholder \\
+          \committee@g \\
+          \committeepos@g
+        \end{tabular} &
+        \\
+      }{}
     \end{tabular}
     \vfill
     \begin{center}
@@ -328,6 +351,7 @@
 }{
   \providecommand\KeywordName{Keywords}
 }
+
 \providecommand\KeywordFont{\bfseries}
 \providecommand\KeywordTitleDelim{: }
 \providecommand\KeywordTextFont{\normalfont}
